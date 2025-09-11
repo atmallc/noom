@@ -1,0 +1,23 @@
+[ 
+    { 
+        "id": 0, 
+        brand: "Journal Communications", 
+        name: "BBQ Chicken Pizza", 
+        calories: 119, 
+        portion: 231 
+    }, 
+    { 
+        id: 17, 
+        brand: "Journal Communications", 
+        name: "Alice Springs Chicken", 
+        calories: 134, 
+        portion: 264 
+    }, 
+    { 
+        id: 41, 
+        brand: "Starbucks", 
+        name: "Chicken Alfredo", 
+        calories: 873, 
+        portion: 414 
+    } 
+] 
