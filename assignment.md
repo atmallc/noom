@@ -1,15 +1,13 @@
+Prompt:
+Create an iOS application called NoomFoodTracker: a simple food browser app. Create an elegant welcome screen, with a search bar in the middle of the screen, when the customer taps on this screen, the search bar should move to the top of the screen.
 
-Mobile Take-Home Assignment 
-Please look to complete this take-home assignment before your interview that will be conducted over Zoom. You will need to share your project with your interviewer ~one day in advance. There are instructions on how to do that in your interview confirmation email. 
+When the user types in some text, you will query the REST API described below. The REST API will return an array of food items. 
 
-Mobile Tech Interview Prompt 
-For this exercise, you’ll be working on a small application (live) during the interview.  To speed things along, please prepare a basic app with the functionality described below, using your preferred libraries and patterns, and have it ready before the interview begins (you can create a private Github project and invite your Noom interviewer to it). 
-Tips and tricks:  
-When the user taps on one of the names of the foods, display a simple message with the food name. 
-We don’t care about the prototype looking good — don’t spend time aligning pixels. We want to see how you organize your code, how you consider corner cases, and what your favorite libraries are.
-During the interview you will add functionality to this food browser. 
+Create an iOS app that allows users to search for food items. When the user taps on one of the names of the foods, display a simple message with the food name. 
 
-The application to prepare is a simple food browser. Create a simple screen with the search bar on top. When the user types in some text, you will query the REST API described below. The REST API will return an array of food items. 
+Make sure to follow @codeOrganization.md for code organization.
+
+
 
 For example, if the user types “chicken” into the search box, the REST API will return a json as described in @searchResponse.json
 
