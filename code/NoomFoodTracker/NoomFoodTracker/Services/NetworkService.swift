@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Networking Layer
 class NetworkService {
     static let shared = NetworkService()
     private init() {}
