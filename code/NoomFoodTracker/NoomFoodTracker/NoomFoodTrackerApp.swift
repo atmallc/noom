@@ -11,7 +11,7 @@ import SwiftUI
 struct NoomFoodTrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
+            FoodSearchView()
         }
     }
 }

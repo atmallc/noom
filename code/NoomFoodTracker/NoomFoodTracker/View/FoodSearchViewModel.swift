@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 // MARK: - ViewModel Layer
 @MainActor
@@ -141,6 +142,3 @@ class FoodSearchViewModel: ObservableObject {
         showError = false
     }
 }
-
-// MARK: - Import Combine for publishers
-import Combine
