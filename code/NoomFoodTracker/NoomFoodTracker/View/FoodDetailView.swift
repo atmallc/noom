@@ -33,9 +33,9 @@ struct FoodDetailView: View {
                 
                 // Nutrition Info
                 VStack(spacing: 16) {
-                    nutritionRow(title: "Calories per 100g", value: "\(foodItem.calories)")
-                    nutritionRow(title: "Portion Size", value: "\(foodItem.portion)g")
-                    nutritionRow(title: "Calories per Portion", value: "\(foodItem.caloriesPerPortion)")
+                    nutritionRow(title: "Calories", subTitle: "per 100g", value: "\(foodItem.calories)")
+                    nutritionRow(title: "Portion size", subTitle: "grams per portion", value: "\(foodItem.portion)g")
+                    nutritionRow(title: "Calories", subTitle: "per portion", value: "\(foodItem.caloriesPerPortion)")
                 }
                 .padding()
                 .background(Color(.systemGroupedBackground))
@@ -51,11 +51,19 @@ struct FoodDetailView: View {
     }
     
     @ViewBuilder
-    private func nutritionRow(title: String, value: String) -> some View {
+    private func nutritionRow(title: String, subTitle: String?, value: String) -> some View {
         HStack {
-            Text(title)
-                .font(.subheadline)
-                .foregroundColor(.primary)
+            VStack(alignment: .leading) {
+                Text(title)
+                    .font(.subheadline)
+                    .foregroundColor(.primary)
+                
+                if let subTitle = subTitle {
+                    Text(subTitle)
+                        .font(.caption)
+                        .foregroundColor(.primary)
+                }
+            }
             
             Spacer()
             
