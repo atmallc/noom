@@ -109,6 +109,7 @@ struct FoodSearchView: View {
                 TextField("Search for food items...", text: $viewModel.searchText)
                     .focused($isSearchFieldFocused)
                     .textFieldStyle(PlainTextFieldStyle())
+                    .keyboardToolbar()
                     .onSubmit {
                         Task {
                             await viewModel.performSearch(query: viewModel.searchText)
