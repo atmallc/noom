@@ -10,6 +10,7 @@ import SwiftUI
 // MARK: - View Layer
 struct FoodSearchView: View {
     @StateObject private var viewModel = FoodSearchViewModel()
+    @StateObject private var mealTrackingViewModel = MealTrackingViewModel()
     @FocusState private var isSearchFieldFocused: Bool
     
     var body: some View {
@@ -21,6 +22,11 @@ struct FoodSearchView: View {
                     
                     // Content area
                     contentSection
+                    
+                    // Meal summary button (if items exist)
+                    if mealTrackingViewModel.hasMealItems {
+                        mealSummarySection
+                    }
                     
                     Spacer()
                 }
@@ -41,6 +47,9 @@ struct FoodSearchView: View {
                     viewModel.dismissFoodDetail()
                 }
             }
+        }
+        .sheet(isPresented: $mealTrackingViewModel.showMealView) {
+            MealTrackingView(viewModel: mealTrackingViewModel)
         }
         .alert("Error", isPresented: $viewModel.showError) {
             Button("Retry") {
@@ -175,9 +184,18 @@ struct FoodSearchView: View {
     @ViewBuilder
     private var foodListView: some View {
         List(viewModel.foodItems) { item in
-            FoodItemRow(item: item) {
-                viewModel.selectFoodItem(item)
-            }
+            FoodItemRow(
+                item: item,
+                onTap: {
+                    viewModel.selectFoodItem(item)
+                },
+                onAddToMeal: {
+                    mealTrackingViewModel.addFoodItem(item)
+                    // Show brief feedback
+                    let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+                    impactFeedback.impactOccurred()
+                }
+            )
         }
         .listStyle(PlainListStyle())
     }
@@ -200,6 +218,24 @@ struct FoodSearchView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
+    }
+    
+    @ViewBuilder
+    private var mealSummarySection: some View {
+        VStack(spacing: 0) {
+            Divider()
+                .padding(.horizontal)
+            
+            MealSummaryButton(
+                totalCalories: mealTrackingViewModel.totalCalories,
+                itemCount: mealTrackingViewModel.mealItemsCount
+            ) {
+                mealTrackingViewModel.showMealTrackingView()
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 12)
+        }
+        .background(Color(.systemBackground))
     }
 }
 
